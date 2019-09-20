@@ -56,7 +56,6 @@ function set_descriptive_time_stamp() {
     $('.desc_time[data-obj_timestamp]').each(function (index, value) {
         var time_ele = $(this);
         var disp_str = get_descriptive_timestamp(time_ele.data('obj_timestamp'));
-        console.log(disp_str);
 
         time_ele.text(disp_str)
     })
