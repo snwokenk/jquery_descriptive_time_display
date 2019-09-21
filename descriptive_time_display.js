@@ -21,10 +21,14 @@ function convert_to_12hr_format(hour_in_24hr_format, minute) {
 
 // will take a timestamp(in seconds) and get the number of seconds from current timestamp
 // and return a descriptive value of it
-function get_descriptive_timestamp(prev_time) {
+function get_descriptive_timestamp(prev_time, just_date) {
     //prev_time == any prev_time in timestamp seconds
     prev_time = parseInt(parseInt(prev_time) * 1000); // convert to milliseconds
     var prev_date = new Date(prev_time);
+    if (just_date)
+        return prev_date.toDateString();
+
+
     var curr_date = new Date(Date.now());
     var curr_time = curr_date.getTime();
     var elapsed_time = parseInt(curr_time - prev_time);
@@ -51,11 +55,12 @@ function get_descriptive_timestamp(prev_time) {
 }
 
 // used to set descriptive timestamp on all elements with a desc_time class
+// data-obj_timestamp and data-just_date should be added (just date, will only bring the date
 function set_descriptive_time_stamp() {
 
     $('.desc_time[data-obj_timestamp]').each(function (index, value) {
         var time_ele = $(this);
-        var disp_str = get_descriptive_timestamp(time_ele.data('obj_timestamp'));
+        var disp_str = get_descriptive_timestamp(time_ele.data('obj_timestamp'), time_ele.data('just_date'));
 
         time_ele.text(disp_str)
     })
