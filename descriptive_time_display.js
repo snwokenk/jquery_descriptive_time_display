@@ -44,7 +44,8 @@ function get_descriptive_timestamp(prev_time, just_date) {
         disp_str = ago +" "+ meas+" ago at " + convert_to_12hr_format(prev_date.getHours(), prev_date.getMinutes())
     }else if (elapsed_time < 3600000) {
         ago = Math.floor(elapsed_time/60000);  // 60 seconds
-        meas = (ago === 1) ? 'minute': 'minutes';
+        meas = (ago <= 1) ? 'minute': 'minutes';
+        ago = (ago < 0) ? 0: ago;
         disp_str = ago +" "+ meas+" ago at " + convert_to_12hr_format(prev_date.getHours(), prev_date.getMinutes())
     }else {
         ago = Math.floor(elapsed_time/86400000); // 86400 seconds
