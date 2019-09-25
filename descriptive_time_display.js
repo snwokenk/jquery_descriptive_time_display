@@ -15,7 +15,10 @@ function convert_to_12hr_format(hour_in_24hr_format, minute) {
         pm_am = 'PM'
     }
 
-    return hour_in_24hr_format+':'+ minute + pm_am
+    var min = minute.toString();
+    min = min.length > 1 ? min : '0' + min;
+
+    return hour_in_24hr_format+':'+ min + pm_am
 }
 
 
